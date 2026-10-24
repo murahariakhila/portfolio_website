@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Akhila Murahari · Full-stack + ML</title>
+<meta name="description" content="Portfolio of Akhila Murahari, B.Tech CSE student building full-stack web apps and machine learning models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F5F8; --surface:#FFFFFF; --ink:#12263A; --muted:#506274; --line:#CFDAE3;
+  --web:#1F7A8C; --ml:#C2410C; --on-accent:#FFFFFF;
+  --accent:var(--web); --accent-soft:#D9EEF2;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1B28; --surface:#162637; --ink:#E8EFF5; --muted:#9DB0C1; --line:#2A3E52;
+    --web:#5CC0D3; --ml:#FB923C; --on-accent:#0E1B28; --accent-soft:#17384A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1B28; --surface:#162637; --ink:#E8EFF5; --muted:#9DB0C1; --line:#2A3E52;
+  --web:#5CC0D3; --ml:#FB923C; --on-accent:#0E1B28; --accent-soft:#17384A; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);transition:background .3s}
+body[data-lens="ml"]{--accent:var(--ml);--accent-soft:color-mix(in srgb,var(--ml) 16%,var(--bg))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.brand{font:800 1.15rem var(--head);text-decoration:none;letter-spacing:-.01em}
+nav a{margin-left:1.25rem;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--accent)}
+
+/* hero */
+.hero{padding:clamp(2.5rem,8vw,6rem) 0 3rem}
+.hero h1{font:800 clamp(2.6rem,9vw,6.2rem)/.98 var(--head);letter-spacing:-.035em;margin:0 0 1.5rem}
+.hero h1 .lens{color:var(--accent);display:block;transition:color .3s}
+.hero p{max-width:34rem;color:var(--muted);font-size:1.15rem;margin:0 0 2rem}
+.toggle{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.toggle button{font:600 .95rem var(--body);border:0;background:transparent;color:var(--muted);padding:.55rem 1.1rem;border-radius:999px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.toggle-note{display:block;margin-top:.6rem;font-size:.9rem;color:var(--muted)}
+.cta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:10px;font-weight:600;text-decoration:none;border:1.5px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+
+section{padding:3rem 0;border-top:1px solid var(--line)}
+h2{font:700 clamp(1.7rem,4vw,2.3rem)/1.1 var(--head);letter-spacing:-.02em;margin:0 0 1.5rem}
+
+/* projects */
+.projects{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.proj{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:6px;padding:1.5rem;transition:opacity .3s,filter .3s}
+.proj[data-kind="web"]{--c:var(--web)} .proj[data-kind="ml"]{--c:var(--ml)}
+body[data-lens="web"] .proj[data-kind="ml"],body[data-lens="ml"] .proj[data-kind="web"]{opacity:.45;filter:saturate(.4)}
+.proj h3{font:700 1.4rem var(--head);margin:0 0 .25rem}
+.kind{color:var(--c);font-weight:600;font-size:.95rem;margin:0 0 .75rem}
+.proj p{margin:0 0 1rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0;margin:0}
+.tags li{font-size:.88rem;padding:.2rem .65rem;border:1px solid var(--line);border-radius:999px}
+
+/* skills */
+.skills{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.group{padding:1.25rem 0;transition:opacity .3s}
+.group h3{font:700 1.15rem var(--head);margin:0 0 .6rem}
+body[data-lens="web"] .group[data-kind="ml"],body[data-lens="ml"] .group[data-kind="web"]{opacity:.45}
+.group[data-kind="web"] h3{color:var(--web)} .group[data-kind="ml"] h3{color:var(--ml)}
+.group p{margin:0;color:var(--muted)}
+
+/* about */
+.facts{display:grid;gap:1.5rem 3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.facts dt{font-weight:600;color:var(--muted);font-size:.95rem}
+.facts dd{margin:.1rem 0 0;font:600 1.2rem var(--head)}
+.about p{max-width:38rem}
+
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line)}
+footer h2{margin-bottom:1rem}
+footer .links{display:flex;gap:1rem;flex-wrap:wrap}
+small{display:block;margin-top:2.5rem;color:var(--muted)}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .7s ease-out both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:560px){nav a{margin-left:.8rem}}
+</style>
+</head>
+<body data-lens="web">
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">Akhila Murahari</a>
+    <nav aria-label="Primary"><a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <h1>Some of what I’ve built: apps you can click, models that think.<span class="lens" id="lens-line">Full-stack, MERN.</span></h1>
+      <p>I’m a CSE student at GITAM, Hyderabad, graduating in 2027. I like building websites, and I like teaching models to recognize patterns. Here’s some of what I’ve made so far.</p>
+      <div class="toggle" role="group" aria-label="Choose a lens for this page">
+        <button type="button" data-set="web" aria-pressed="true">Full-stack</button>
+        <button type="button" data-set="ml" aria-pressed="false">Machine learning</button>
+      </div>
+      <span class="toggle-note">Pick a lens to highlight the matching work and skills.</span>
+      <div class="cta">
+        <a class="btn primary" href="#work">See my projects</a>
+        <a class="btn" href="https://github.com/murahariakhila" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/akhila-murahari-763254302" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <section id="work">
+      <h2>Selected work</h2>
+      <div class="projects">
+        <article class="proj" data-kind="ml">
+          <h3>SharkEyes</h3>
+          <p class="kind">Machine learning</p>
+          <p>A deep learning model that detects phishing. I’m working on its architecture and evaluating it with standard classification metrics, then running experiments to make it more accurate.</p>
+          <ul class="tags"><li>Deep learning</li><li>Python</li><li>Phishing detection</li></ul>
+        </article>
+        <article class="proj" data-kind="web">
+          <h3>Raksha Bandhan website</h3>
+          <p class="kind">Full-stack web</p>
+          <p>A multi-page, interactive website I built as a gift for my sibling. It turns a festival into something you can click through, with its own pages, animations and small surprises.</p>
+          <ul class="tags"><li>Multi-page</li><li>Interactive UI</li><li>Front-end</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>What I work with</h2>
+      <div class="skills">
+        <div class="group" data-kind="web">
+          <h3>Full-stack</h3>
+          <p>MongoDB, Express, React and Node. I build the whole path: data models, APIs and the screens people use.</p>
+        </div>
+        <div class="group" data-kind="ml">
+          <h3>Machine learning</h3>
+          <p>Deep learning for classification problems, plus model evaluation and experiment design.</p>
+        </div>
+        <div class="group">
+          <h3>Always learning</h3>
+          <p>Currently enrolled in the Wipro TalentNext certification program, and practising coding and aptitude for placements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About me</h2>
+      <p>I’m studying B.Tech in Computer Science and Engineering and I’m most interested in the space where web development meets machine learning: apps that don’t just display data, but make sense of it.</p>
+      <dl class="facts">
+        <div><dt>University</dt><dd>GITAM, Hyderabad</dd></div>
+        <div><dt>Degree</dt><dd>B.Tech, Computer Science and Engineering</dd></div>
+        <div><dt>Graduating</dt><dd>2027</dd></div>
+        <div><dt>CGPA</dt><dd>7.72</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <h2>Let’s talk</h2>
+    <p>I’m looking for internships and entry-level roles in full-stack and ML. The quickest way to reach me is LinkedIn.</p>
+    <div class="links">
+      <a class="btn primary" href="https://linkedin.com/in/akhila-murahari-763254302" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      <a class="btn" href="https://github.com/murahariakhila" target="_blank" rel="noopener">View my code on GitHub</a>
+    </div>
+    <small>© 2026 Akhila Murahari</small>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var lines={web:"Full-stack, MERN.",ml:"Machine learning."};
+  var btns=document.querySelectorAll('.toggle button');
+  function setLens(k){
+    document.body.setAttribute('data-lens',k);
+    document.getElementById('lens-line').textContent=lines[k];
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===k));});
+    try{localStorage.setItem('lens',k);}catch(e){}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){setLens(b.dataset.set);});});
+  try{var s=localStorage.getItem('lens');if(s&&lines[s])setLens(s);}catch(e){}
+})();
+</script>
+</body>
+</html>
